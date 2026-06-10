@@ -1,0 +1,27 @@
+{
+  "python.defaultInterpreterPath": "venv\\Scripts\\python.exe",
+  // --- Python 核心設定 ---
+  "python.analysis.typeCheckingMode": "basic", // 啟用 Pylance 的基本型別檢查
+  "python.analysis.autoImportCompletions": true, // 自動導入功能
+  // --- 編輯器行為 ---
+  "editor.formatOnSave": true, // 儲存時自動格式化程式碼
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "always" // 儲存時自動整理 import 順序
+  },
+  "editor.rulers": [
+    88
+  ], // 設定代碼行數參考線（符合 Black 格式規範）
+  // --- 檔案顯示排除 (讓專案結構更乾淨) ---
+  "files.exclude": {
+    "**/__pycache__": true,
+    "**/.venv": true,
+    "**/.pytest_cache": true,
+    "**/.mypy_cache": true,
+    "**/*.pyc": true
+  },
+  // --- 格式化工具設定 (若安裝了 Black 或 Ruff) ---
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.black-formatter",
+    "editor.formatOnSave": true
+  }
+}

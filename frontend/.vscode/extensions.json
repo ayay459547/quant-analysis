@@ -1,0 +1,14 @@
+{
+  "recommendations": [
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "steoates.autoimport",
+    "bradlc.vscode-tailwindcss",
+    "formulahendry.auto-rename-tag",
+    "oderwat.indent-rainbow",
+    "streetsidesoftware.code-spell-checker",
+    "csstools.postcss",
+    "dsznajder.es7-react-js-snippets",
+    "yoavbls.pretty-ts-errors"
+  ]
+}

@@ -1,0 +1,12 @@
+/bin/
+/dist/
+/build/
+
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+*.test
+*.log

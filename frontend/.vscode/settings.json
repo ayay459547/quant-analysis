@@ -1,0 +1,69 @@
+{
+  // =============================
+  // Editor
+  // =============================
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "editor.detectIndentation": false,
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "explicit",
+    "source.fixAll": "explicit"
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+
+  // =============================
+  // TypeScript
+  // =============================
+  // "typescript.preferences.importModuleSpecifier": "relative",
+  // "typescript.tsserver.log": "off",
+  // "typescript.updateImportsOnFileMove.enabled": "always",
+
+  // =============================
+  // Prettier
+  // =============================
+  "prettier.printWidth": 100,
+  "prettier.singleQuote": true,
+  "prettier.trailingComma": "all",
+  "prettier.semi": true,
+  "prettier.arrowParens": "always",
+
+  // =============================
+  // React
+  // =============================
+  "files.associations": {
+    "*.css": "tailwindcss"
+  },
+
+  // =============================
+  // alias
+  // =============================
+  "path-intellisense.mappings": {
+    "@": "${workspaceRoot}/src"
+  },
+
+  // =============================
+  // file
+  // =============================
+  "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.patterns": {
+    "package.json": "package-lock.json, pnpm-lock.yaml, yarn.lock, .npmrc",
+    "tsconfig.json": "tsconfig.*.json",
+    "vite.config.ts": "vite.config.*.ts",
+    ".env": ".env.*",
+    "tailwind.config.js": "tailwind.config.*.js",
+    "postcss.config.js": "postcss.config.*.js",
+    "eslint.config.js": "eslint.config.*.js"
+  },
+  "[xml]": {
+    "editor.defaultFormatter": "redhat.vscode-xml"
+  },
+
+  // =============================
+  // svg
+  // =============================
+  "svg.preview.enabled": false,
+  "workbench.editorAssociations": {
+    "*.svg": "default"
+  }
+}
