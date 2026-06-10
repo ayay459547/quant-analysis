@@ -1,8 +1,4 @@
-這是一份根據您目前正在瀏覽的「財報狗」網頁架構，為您量身打造的股票分析 Side Project `README.md` 功能清單範本。您可以直接將以下內容複製到您的 GitHub 專案中使用：
-
----
-
-# 📈 Stock-Tracker：台股個股分析與追蹤系統
+# 📈 Quant-Analysis：量化分析(台股/美股/加密貨幣)
 
 ## 📝 專案簡介
 
@@ -12,7 +8,7 @@
 
 ### 👤 會員系統與個人化功能
 
-* **帳號登入/註冊**：支援一般信箱註冊與第三方（Google/GitHub）快速登入。
+* **帳號登入/註冊**：支援一般信箱註冊與第三方（Google/GitHub/Line）快速登入。
 * **新手引導任務**：設計如「查詢 3 家公司」、「連續上站 2 天」、「加入追蹤股」等任務，提升使用者留存率。
 * **我的追蹤 (Watchlist)**：允許使用者將感興趣的標的加入自選股清單，並設定價格或籌碼異動的推播通知。
 
@@ -45,20 +41,18 @@
 
 ---
 
-## 🛠️ 技術堆疊 (Tech Stack) *[建議可依據您的實際使用的技術填寫]*
+## 🛠️ 技術堆疊 (Tech Stack)
 
 * **前端 (Frontend):** React.js / Next.js, Tailwind CSS, Recharts (圖表)
-* **後端 (Backend):** Node.js / Python (FastAPI)
-* **資料庫 (Database):** PostgreSQL / MongoDB
+* **後端 (Backend):** Node.js / Golang / Python (FastAPI)
+* **資料庫 (Database):** PostgreSQL
 * **爬蟲與資料源 (Data Source):** Python (BeautifulSoup, Selenium), 證交所公開資訊觀測站 API
 
 ## 🚀 本地端啟動 (Getting Started)
 
-1. Clone 專案：`git clone https://github.com/yourusername/stock-tracker.git`
+1. Clone 專案：`git clone https://github.com/ayay459547/quant-analysis.git`
 2. 安裝套件：`npm install`
 3. 設定環境變數：請複製 `.env.example` 並重新命名為 `.env`，填入對應的 API Key。
 4. 啟動伺服器：`npm run dev`
 
 ---
-
-這份清單包含了前端介面、後端資料處理以及爬蟲技術的整合，是一個非常適合用來展現全端開發能力的 Side Project。
