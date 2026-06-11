@@ -10,6 +10,8 @@ import { StockHeader } from '@/components/dashboard/StockHeader';
 import { MarketSwitcher } from '@/components/dashboard/MarketSwitcher';
 import { UserSettingsModal } from '@/components/dashboard/UserSettingsModal';
 import { NotificationModal } from '@/components/dashboard/NotificationModal';
+import { SearchBar } from '@/components/dashboard/SearchBar';
+import { PrivacyModal, TermsModal } from '@/components/dashboard/LegalModals';
 import { Input } from '@/components/common/ui';
 
 function DashboardContent({ children }: { children: React.ReactNode }) {
@@ -20,6 +22,8 @@ function DashboardContent({ children }: { children: React.ReactNode }) {
 
   const [modalOpen, setModalOpen] = useState(false);
   const [notiModalOpen, setNotiModalOpen] = useState(false);
+  const [privacyOpen, setPrivacyOpen] = useState(false);
+  const [termsOpen, setTermsOpen] = useState(false);
   const [modalTab, setModalTab] = useState<'profile' | 'settings'>('profile');
 
   const openModal = (tab: 'profile' | 'settings') => {
@@ -49,7 +53,7 @@ function DashboardContent({ children }: { children: React.ReactNode }) {
             <div className="bg-sky-600 p-1.5 rounded-lg text-white">
               <Activity size={24} />
             </div>
-            <span className="ml-3 font-bold text-xl hidden lg:block tracking-wide text-slate-800">Quant Analysis</span>
+            <span className="ml-3 font-bold text-xl hidden lg:block tracking-wide text-slate-800 whitespace-nowrap">Quant Analysis</span>
           </Link>
 
           {/* 導覽列滾動區塊 */}
@@ -105,20 +109,15 @@ function DashboardContent({ children }: { children: React.ReactNode }) {
             {isMainDashboard && (
               <Link 
                 href={`/tw_stock`}
-                className="flex items-center gap-3 mr-4"
+                className="flex items-center gap-3 mr-4 shrink-0"
               >
                 <div className="bg-sky-600 p-1.5 rounded-lg text-white">
                   <Activity size={24} />
                 </div>
-                <span className="font-bold text-xl tracking-wide text-slate-800">Quant Analysis</span>
+                <span className="font-bold text-xl tracking-wide text-slate-800 whitespace-nowrap">Quant Analysis</span>
               </Link>
             )}
-            <Input
-              placeholder="搜尋代號 (如 2330 / BTC)"
-              prefix={<Search size={16} className="text-slate-400" />}
-              variant="filled"
-              className="w-64 rounded-full bg-slate-100 border-none hover:bg-slate-200 focus:bg-white transition-all"
-            />
+            <SearchBar />
             <MarketSwitcher />
           </div>
 
@@ -151,8 +150,18 @@ function DashboardContent({ children }: { children: React.ReactNode }) {
             <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4 text-slate-400 text-xs">
               <p>© 2026 Quant Analysis. All rights reserved.</p>
               <div className="flex items-center gap-6">
-                <a href="#" className="hover:text-sky-600 transition-colors">隱私權政策</a>
-                <a href="#" className="hover:text-sky-600 transition-colors">服務條款</a>
+                <button 
+                  onClick={() => setPrivacyOpen(true)}
+                  className="hover:text-sky-600 transition-colors cursor-pointer"
+                >
+                  隱私權政策
+                </button>
+                <button 
+                  onClick={() => setTermsOpen(true)}
+                  className="hover:text-sky-600 transition-colors cursor-pointer"
+                >
+                  服務條款
+                </button>
                 <span className="px-2 py-0.5 bg-slate-100 rounded text-slate-500 font-medium">Apache-2.0 License</span>
               </div>
             </div>
@@ -169,6 +178,16 @@ function DashboardContent({ children }: { children: React.ReactNode }) {
       <NotificationModal
         open={notiModalOpen}
         onClose={() => setNotiModalOpen(false)}
+      />
+
+      <PrivacyModal 
+        open={privacyOpen} 
+        onClose={() => setPrivacyOpen(false)} 
+      />
+
+      <TermsModal 
+        open={termsOpen} 
+        onClose={() => setTermsOpen(false)} 
       />
     </div>
   );

@@ -66,6 +66,30 @@ const createService = (apiClient: any) => ({
       return response.json();
     }
     return apiClient.get('/notifications');
+  },
+
+  // 搜尋股票
+  async searchStocks(query: string) {
+    if (useMock) {
+      const [stocksResp, industriesResp] = await Promise.all([
+        fetch('/mock/stocks.json'),
+        fetch('/mock/industries.json')
+      ]);
+      const allStocksByIndustry = await stocksResp.json();
+      const industries = await industriesResp.json();
+      
+      const results: any[] = [];
+      for (const industryId in allStocksByIndustry) {
+        const industryName = industries.find((i: any) => i.id === industryId)?.name || '未知產業';
+        allStocksByIndustry[industryId].forEach((s: any) => {
+          if (s.id.includes(query) || s.name.includes(query)) {
+            results.push({ ...s, industry: industryName });
+          }
+        });
+      }
+      return results.slice(0, 10);
+    }
+    return apiClient.get(`/stocks/search?q=${query}`);
   }
 });
 
