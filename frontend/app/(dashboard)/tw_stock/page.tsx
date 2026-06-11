@@ -55,7 +55,7 @@ export default function MarketDashboard() {
           </div>
         </div>
         <div className="flex gap-2">
-          <div className="flex items-center gap-2 px-3 py-1.5 bg-green-50 text-green-700 rounded-lg border border-green-100 text-sm font-medium">
+          <div className="flex items-center gap-2 px-3 py-1.5 bg-red-50 text-red-700 rounded-lg border border-red-100 text-sm font-medium">
             <TrendingUp size={16} />
             市場看漲
           </div>

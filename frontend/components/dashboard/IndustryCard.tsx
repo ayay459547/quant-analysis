@@ -33,7 +33,7 @@ export const IndustryCard: React.FC<IndustryCardProps> = ({
           <Icon size={24} />
         </div>
         <div className={`flex items-center gap-1 text-xs font-bold px-2 py-1 rounded-lg ${
-          monthlyChange >= 0 ? 'bg-green-50 text-green-600' : 'bg-red-50 text-red-600'
+          monthlyChange >= 0 ? 'bg-red-50 text-red-600' : 'bg-green-50 text-green-600'
         }`}>
           {monthlyChange >= 0 ? <ArrowUpRight size={14} /> : <ArrowDownRight size={14} />}
           {Math.abs(monthlyChange)}%

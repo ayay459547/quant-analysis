@@ -45,7 +45,7 @@ export const StockList: React.FC<StockListProps> = ({ stocks, onStockClick }) =>
           <div className="flex items-center gap-8">
             <div className="text-right">
               <div className="font-semibold text-slate-900">${stock.price.toFixed(1)}</div>
-              <div className={`text-xs font-medium flex items-center justify-end gap-0.5 ${stock.change >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+              <div className={`text-xs font-medium flex items-center justify-end gap-0.5 ${stock.change >= 0 ? 'text-red-600' : 'text-green-600'}`}>
                 {stock.change >= 0 ? <ArrowUpRight size={12} /> : <ArrowDownRight size={12} />}
                 {Math.abs(stock.change)}%
               </div>

@@ -25,7 +25,7 @@ export const StockHeader: React.FC = () => {
         </div>
         <div className="flex items-end gap-3">
           <span className="text-4xl font-semibold text-slate-900" suppressHydrationWarning>${currentPrice.toFixed(1)}</span>
-          <div suppressHydrationWarning className={`flex items-center gap-1 mb-1 text-sm font-medium ${isUp ? 'text-green-600' : 'text-red-600'}`}>
+          <div suppressHydrationWarning className={`flex items-center gap-1 mb-1 text-sm font-medium ${isUp ? 'text-red-600' : 'text-green-600'}`}>
             {isUp ? <ArrowUpRight size={18} /> : <ArrowDownRight size={18} />}
             {Math.abs(priceChange).toFixed(2)}%
           </div>

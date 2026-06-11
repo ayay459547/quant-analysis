@@ -82,7 +82,7 @@ export default function BacktestPage() {
                   value={results.finalValue} 
                   precision={0} 
                   prefix="$" 
-                  valueStyle={{ color: '#0f172a', fontWeight: '800' }}
+                  styles={{ content: { color: '#0f172a', fontWeight: '800' } }}
                 />
               </Col>
               <Col span={8}>
@@ -90,7 +90,7 @@ export default function BacktestPage() {
                   title="累計報酬率" 
                   value={results.totalReturn.replace('+', '').replace('%', '')} 
                   suffix="%" 
-                  valueStyle={{ color: '#16a34a', fontWeight: '800' }}
+                  styles={{ content: { color: '#dc2626', fontWeight: '800' } }}
                 />
               </Col>
               <Col span={8}>
@@ -98,7 +98,7 @@ export default function BacktestPage() {
                   title="年化報酬率" 
                   value={results.annualReturn.replace('+', '').replace('%', '')} 
                   suffix="%" 
-                  valueStyle={{ color: '#0284c7', fontWeight: '800' }}
+                  styles={{ content: { color: '#ef4444', fontWeight: '800' } }}
                 />
               </Col>
               
@@ -110,11 +110,11 @@ export default function BacktestPage() {
               </Col>
               <Col span={6}>
                 <p className="text-xs text-slate-500 mb-1">累計獲利</p>
-                <p className="text-lg font-bold text-green-600">+${results.profit.toLocaleString()}</p>
+                <p className="text-lg font-bold text-red-600">+${results.profit.toLocaleString()}</p>
               </Col>
               <Col span={6}>
                 <p className="text-xs text-slate-500 mb-1">最大回撤</p>
-                <p className="text-lg font-bold text-rose-600">{results.maxDrawdown}</p>
+                <p className="text-lg font-bold text-green-600">{results.maxDrawdown}</p>
               </Col>
               <Col span={6}>
                 <p className="text-xs text-slate-500 mb-1">夏普值</p>

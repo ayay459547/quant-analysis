@@ -140,14 +140,14 @@ function DashboardContent({ children }: { children: React.ReactNode }) {
 
         {/* 內容卷軸區 */}
         <div className="flex-1 overflow-y-auto p-6 scroll-smooth flex flex-col">
-          <div className="max-w-7xl mx-auto space-y-6 flex-1">
+          <div className="w-full space-y-6 flex-1">
             {pathname !== `/tw_stock` && <StockHeader />}
             {children}
           </div>
           
           {/* 頁尾 (Footer) */}
           <footer className="mt-12 py-6 border-t border-slate-200 text-center">
-            <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4 text-slate-400 text-xs">
+            <div className="w-full px-6 flex flex-col md:flex-row justify-between items-center gap-4 text-slate-400 text-xs">
               <p>© 2026 Quant Analysis. All rights reserved.</p>
               <div className="flex items-center gap-6">
                 <button 

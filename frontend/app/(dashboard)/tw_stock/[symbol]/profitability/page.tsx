@@ -17,7 +17,7 @@ export default function ProfitabilityPage() {
           <Card key={idx} className="p-5 border-t-2 border-t-sky-600">
             <p className="text-sm font-medium text-slate-500 mb-2">{stat.label}</p>
             <h3 className="text-3xl font-bold text-slate-900 mb-3">{stat.value}</h3>
-            <span className="text-xs font-semibold px-2.5 py-1 rounded-md bg-green-50 text-green-600 flex items-center gap-1 w-max">
+            <span className="text-xs font-semibold px-2.5 py-1 rounded-md bg-red-50 text-red-600 flex items-center gap-1 w-max">
               <ArrowUpRight size={14} /> {stat.trend} (YoY)
             </span>
           </Card>
