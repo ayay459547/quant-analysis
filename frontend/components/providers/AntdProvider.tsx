@@ -10,7 +10,7 @@ export function AntdProvider({ children }: { children: React.ReactNode }) {
       locale={zhTW}
       theme={{
         token: {
-          colorPrimary: '#4f46e5', // indigo-600
+          colorPrimary: '#0ea5e9', // sky-500
           borderRadius: 12,
         },
       }}

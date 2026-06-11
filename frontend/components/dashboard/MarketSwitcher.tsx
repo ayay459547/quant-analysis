@@ -12,11 +12,10 @@ export const MarketSwitcher: React.FC = () => {
   const router = useRouter();
   const pathname = usePathname();
 
-  const markets: { type: MarketType; label: string; icon: React.ElementType; route: string }[] = [
-    { type: 'CRYPTO', label: '加密貨幣', icon: Coins, route: 'crypto' },
+  const markets: { type: MarketType; label: string; icon: any; route: string }[] = [
     { type: 'TW_STOCK', label: '台股', icon: LineChart, route: 'tw_stock' },
-    { type: 'US_STOCK', label: '美股', icon: Globe, route: 'us_stock' },
   ];
+
 
   const handleMarketChange = (route: string) => {
     // 獲取當前的子頁面路徑 (例如: /tw_stock/news -> /news)
@@ -38,8 +37,8 @@ export const MarketSwitcher: React.FC = () => {
             icon={<Icon size={16} />}
             className={`flex items-center gap-2 rounded-lg text-sm font-medium transition-all duration-200 border-none shadow-none ${
               isActive
-                ? 'bg-white text-indigo-600 shadow-sm'
-                : 'text-slate-500 hover:text-indigo-600'
+                ? 'bg-white text-sky-600 shadow-sm'
+                : 'text-slate-500 hover:text-sky-600'
             }`}
           >
             <span className="hidden sm:inline">{m.label}</span>

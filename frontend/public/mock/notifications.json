@@ -1,0 +1,26 @@
+[
+  {
+    "id": "1",
+    "type": "price_alert",
+    "title": "價格預警",
+    "content": "2330 台積電 已達到您的目標價 $1,100.0",
+    "time": "10 分鐘前",
+    "isRead": false
+  },
+  {
+    "id": "2",
+    "type": "system",
+    "title": "系統更新",
+    "content": "系統已更新至 v1.0.0，新增了產業儀表板功能。",
+    "time": "1 小時前",
+    "isRead": true
+  },
+  {
+    "id": "3",
+    "type": "analysis",
+    "title": "策略分析",
+    "content": "您追蹤的「均線突破」策略今日產生 3 筆買入訊號。",
+    "time": "3 小時前",
+    "isRead": false
+  }
+]

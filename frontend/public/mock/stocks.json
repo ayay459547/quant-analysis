@@ -1,0 +1,21 @@
+{
+  "semiconductor": [
+    { "id": "2330", "name": "台積電", "price": 1050.0, "change": 2.5 },
+    { "id": "2454", "name": "聯發科", "price": 1210.0, "change": -1.2 },
+    { "id": "2303", "name": "聯電", "price": 52.5, "change": 0.8 },
+    { "id": "3711", "name": "日月光投控", "price": 155.0, "change": 1.5 },
+    { "id": "2379", "name": "瑞昱", "price": 540.0, "change": -0.5 }
+  ],
+  "shipping": [
+    { "id": "2603", "name": "長榮", "price": 185.5, "change": 4.2 },
+    { "id": "2609", "name": "陽明", "price": 72.3, "change": 3.8 },
+    { "id": "2615", "name": "萬海", "price": 88.0, "change": 5.1 },
+    { "id": "2606", "name": "裕民", "price": 62.1, "change": 1.2 }
+  ],
+  "finance": [
+    { "id": "2881", "name": "富邦金", "price": 92.5, "change": 0.3 },
+    { "id": "2882", "name": "國泰金", "price": 65.8, "change": 0.5 },
+    { "id": "2886", "name": "兆豐金", "price": 39.2, "change": -0.2 },
+    { "id": "2891", "name": "中信金", "price": 35.5, "change": 1.1 }
+  ]
+}

@@ -13,7 +13,7 @@ interface PlaceholderPageProps {
 export const PlaceholderPage: React.FC<PlaceholderPageProps> = ({ title, icon: Icon = Target }) => {
   return (
     <Card className="h-[60vh] flex flex-col items-center justify-center text-slate-500 animate-in fade-in duration-300">
-      <Icon size={64} className="mb-6 opacity-20 text-indigo-500" />
+      <Icon size={64} className="mb-6 opacity-20 text-sky-500" />
       <h2 className="text-2xl font-bold text-slate-800 mb-2">
         {title} 模組開發中
       </h2>
@@ -22,7 +22,7 @@ export const PlaceholderPage: React.FC<PlaceholderPageProps> = ({ title, icon: I
       </p>
       <Link
         href="/profitability"
-        className="text-indigo-600 hover:text-indigo-700 text-sm font-medium flex items-center gap-1 transition-colors"
+        className="text-sky-600 hover:text-sky-700 text-sm font-medium flex items-center gap-1 transition-colors"
       >
         先去看看「獲利能力」展示 <ArrowUpRight size={16} />
       </Link>

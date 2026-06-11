@@ -1,6 +1,6 @@
 import { LucideIcon } from 'lucide-react';
 
-export type MarketType = 'CRYPTO' | 'TW_STOCK' | 'US_STOCK';
+export type MarketType = 'TW_STOCK';
 
 export interface ChartDataPoint {
   date: string;
@@ -8,6 +8,9 @@ export interface ChartDataPoint {
   high: number;
   low: number;
   close: number;
+  volume: number;
+  ma5?: number;
+  ma10?: number;
   ma20: number;
 }
 

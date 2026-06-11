@@ -21,13 +21,13 @@ export default function LoginPage() {
     console.log('Login values:', values);
     message.success('登入成功');
     // 模擬登入，跳轉至首頁
-    router.push('/tw_stock/news');
+    router.push('/tw_stock');
   };
 
   const handleSocialLogin = (provider: string) => {
     message.loading(`正在導向至 ${provider} 登入...`, 0.8).then(() => {
       message.success(`${provider} 登入成功 (模擬)`);
-      router.push('/tw_stock/news');
+      router.push('/tw_stock');
     });
   };
 
@@ -36,7 +36,7 @@ export default function LoginPage() {
       <div className="max-w-md w-full">
         {/* Logo */}
         <div className="flex flex-col items-center mb-8">
-          <div className="bg-indigo-600 p-3 rounded-2xl text-white shadow-lg shadow-indigo-100 mb-4">
+          <div className="bg-sky-600 p-3 rounded-2xl text-white shadow-lg shadow-sky-100 mb-4">
             <Activity size={32} />
           </div>
           <h1 className="text-2xl font-bold text-slate-900">Quant Analysis</h1>
@@ -81,7 +81,7 @@ export default function LoginPage() {
               <Form.Item name="remember" valuePropName="checked" noStyle>
                 <Checkbox className="text-slate-600">記住我</Checkbox>
               </Form.Item>
-              <a href="#" className="text-sm text-indigo-600 hover:text-indigo-500 font-medium">忘記密碼？</a>
+              <a href="#" className="text-sm text-sky-600 hover:text-sky-500 font-medium">忘記密碼？</a>
             </div>
 
             <Form.Item className="mt-2">
@@ -90,7 +90,7 @@ export default function LoginPage() {
                 htmlType="submit"
                 size="large"
                 block
-                className="h-12 bg-indigo-600 hover:bg-indigo-500 rounded-xl font-semibold shadow-md shadow-indigo-100 flex items-center justify-center gap-2 group border-none"
+                className="h-12 bg-sky-600 hover:bg-sky-500 rounded-xl font-semibold shadow-md shadow-sky-100 flex items-center justify-center gap-2 group border-none"
               >
                 登入系統 <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
               </Button>
@@ -112,7 +112,7 @@ export default function LoginPage() {
               size="large" 
               icon={<GoogleOutlined />} 
               onClick={() => handleSocialLogin('Google')}
-              className="rounded-xl border-slate-200 hover:border-indigo-500 hover:text-indigo-600 h-11 flex items-center justify-center font-medium"
+              className="rounded-xl border-slate-200 hover:border-sky-500 hover:text-sky-600 h-11 flex items-center justify-center font-medium"
             >
               使用 Google 帳號登入
             </Button>
@@ -121,7 +121,7 @@ export default function LoginPage() {
               size="large" 
               icon={<GithubOutlined />} 
               onClick={() => handleSocialLogin('GitHub')}
-              className="rounded-xl border-slate-200 hover:border-indigo-500 hover:text-indigo-600 h-11 flex items-center justify-center font-medium"
+              className="rounded-xl border-slate-200 hover:border-sky-500 hover:text-sky-600 h-11 flex items-center justify-center font-medium"
             >
               使用 GitHub 帳號登入
             </Button>
@@ -138,7 +138,7 @@ export default function LoginPage() {
 
           <div className="mt-8 pt-6 border-t border-slate-100 text-center">
             <p className="text-slate-500 text-sm">
-              還沒有帳號？ <a href="#" className="text-indigo-600 hover:text-indigo-500 font-medium">立即註冊</a>
+              還沒有帳號？ <a href="#" className="text-sky-600 hover:text-sky-500 font-medium">立即註冊</a>
             </p>
           </div>
         </div>

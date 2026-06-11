@@ -31,7 +31,7 @@ export const UserSettingsModal: React.FC<UserModalProps> = ({ open, onClose, ini
     <div className="py-4">
       <div className="flex flex-col items-center mb-8">
         <div className="relative group">
-          <Avatar size={100} icon={<UserOutlined />} className="bg-indigo-600 shadow-lg" />
+          <Avatar size={100} icon={<UserOutlined />} className="bg-sky-600 shadow-lg" />
           <Upload showUploadList={false} className="absolute bottom-0 right-0">
             <Button shape="circle" icon={<CameraOutlined />} size="small" className="shadow-md" />
           </Upload>
@@ -59,7 +59,7 @@ export const UserSettingsModal: React.FC<UserModalProps> = ({ open, onClose, ini
         </div>
         <div className="flex justify-end gap-2 mt-4">
           <Button onClick={onClose}>取消</Button>
-          <Button type="primary" className="bg-indigo-600" onClick={() => message.success('個人資訊已儲存')}>儲存變更</Button>
+          <Button type="primary" className="bg-sky-600" onClick={() => message.success('個人資訊已儲存')}>儲存變更</Button>
         </div>
       </Form>
     </div>
@@ -90,10 +90,13 @@ export const UserSettingsModal: React.FC<UserModalProps> = ({ open, onClose, ini
               <GlobalOutlined className="text-blue-500" /> 語言與地區
             </h4>
             <Form.Item label="介面語言">
-              <Select defaultValue="zh_TW">
-                <Select.Option value="zh_TW">繁體中文 (台灣)</Select.Option>
-                <Select.Option value="en_US">English (US)</Select.Option>
-              </Select>
+              <Select 
+                defaultValue="zh_TW" 
+                options={[
+                  { value: 'zh_TW', label: '繁體中文 (台灣)' },
+                  { value: 'en_US', label: 'English (US)' }
+                ]}
+              />
             </Form.Item>
           </section>
 
@@ -105,7 +108,7 @@ export const UserSettingsModal: React.FC<UserModalProps> = ({ open, onClose, ini
           </section>
         </div>
         <div className="flex justify-end mt-8">
-          <Button type="primary" className="bg-indigo-600" onClick={() => message.success('設定已套用')}>套用所有設定</Button>
+          <Button type="primary" className="bg-sky-600" onClick={() => message.success('設定已套用')}>套用所有設定</Button>
         </div>
       </Form>
     </div>

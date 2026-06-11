@@ -13,6 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 import { AntdProvider } from "@/components/providers/AntdProvider";
+import ProgressBarProvider from "@/components/providers/ProgressBarProvider";
 
 export const metadata: Metadata = {
   title: "Quant Analysis",
@@ -31,7 +32,9 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col">
         <AntdProvider>
-          {children}
+          <ProgressBarProvider>
+            {children}
+          </ProgressBarProvider>
         </AntdProvider>
       </body>
     </html>

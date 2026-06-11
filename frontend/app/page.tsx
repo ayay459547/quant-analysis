@@ -1,5 +1,5 @@
 import { redirect } from 'next/navigation';
 
 export default function Home() {
-  redirect('/tw_stock/news');
+  redirect('/tw_stock');
 }

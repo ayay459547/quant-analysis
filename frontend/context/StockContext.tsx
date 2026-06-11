@@ -1,33 +1,25 @@
 'use client';
 
-import React, { createContext, useContext, useState, useMemo } from 'react';
-import { generateMockData } from '@/lib/mockData';
+import React, { createContext, useContext, useState, useEffect, useMemo } from 'react';
+import { dataService } from '@/lib/dataService';
 import { ChartDataPoint, MarketType } from '@/types';
 import { useParams } from 'next/navigation';
 
 interface StockContextType {
   selectedAsset: string;
   setSelectedAsset: (asset: string) => void;
+  selectedSymbol: string;
   marketType: MarketType;
   chartData: ChartDataPoint[];
   currentPrice: number;
   priceChange: number;
   isUp: boolean;
+  loading: boolean;
 }
 
 const StockContext = createContext<StockContextType | undefined>(undefined);
 
-const DEFAULT_ASSETS: Record<MarketType, string> = {
-  TW_STOCK: '2330 台積電',
-  US_STOCK: 'NVDA NVIDIA',
-  CRYPTO: 'BTC Bitcoin',
-};
-
-const marketMap: Record<string, MarketType> = {
-  'tw_stock': 'TW_STOCK',
-  'us_stock': 'US_STOCK',
-  'crypto': 'CRYPTO'
-};
+const DEFAULT_SYMBOL = '2330';
 
 export function StockProvider({ 
   children, 
@@ -35,26 +27,76 @@ export function StockProvider({
   children: React.ReactNode;
 }) {
   const params = useParams();
-  const marketParam = params?.market as string;
-  const currentMarketType = (marketParam && marketMap[marketParam.toLowerCase()]) || 'TW_STOCK';
+  const currentMarketType: MarketType = 'TW_STOCK';
+  const symbolParam = params?.symbol as string;
   
-  const [selectedAsset, setSelectedAsset] = useState<string>(DEFAULT_ASSETS[currentMarketType]);
-  const [prevMarketType, setPrevMarketType] = useState<MarketType>(currentMarketType);
+  const [selectedSymbol, setSelectedSymbol] = useState<string>(symbolParam || DEFAULT_SYMBOL);
+  const [prevSymbolParam, setPrevSymbolParam] = useState<string | undefined>(symbolParam);
+  const [selectedAssetName, setSelectedAssetName] = useState<string>('');
+  const [chartData, setChartData] = useState<ChartDataPoint[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
 
-  // 當 URL 的市場類型改變時，同步重置所選資產 (在 Render 階段處理以避免 Extra Render)
-  if (currentMarketType !== prevMarketType) {
-    setPrevMarketType(currentMarketType);
-    setSelectedAsset(DEFAULT_ASSETS[currentMarketType]);
+  // 在 Render 階段同步 URL 參數與 State，避免 Cascading Renders 錯誤
+  if (symbolParam && symbolParam !== prevSymbolParam) {
+    setPrevSymbolParam(symbolParam);
+    setSelectedSymbol(symbolParam);
   }
 
-  const chartData = useMemo(() => generateMockData(90, selectedAsset), [selectedAsset]);
-  const currentPrice = chartData[chartData.length - 1]?.close || 0;
-  const prevPrice = chartData[chartData.length - 2]?.close || 0;
-  const priceChange = ((currentPrice - prevPrice) / prevPrice) * 100;
-  const isUp = priceChange >= 0;
+  // 當 selectedSymbol 改變時，獲取股票基本資訊與圖表資料
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        // 同步獲取資訊與圖表
+        const [info, chart] = await Promise.all([
+          dataService.getStockInfo(selectedSymbol),
+          dataService.getChartData(selectedSymbol)
+        ]);
+        
+        setSelectedAssetName(info.name);
+        setChartData(chart);
+      } catch (error) {
+        console.error('Failed to fetch stock data:', error);
+        setSelectedAssetName('未知標的');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [selectedSymbol]);
+
+  const { currentPrice, priceChange, isUp } = useMemo(() => {
+    if (chartData.length < 2) return { currentPrice: 0, priceChange: 0, isUp: true };
+    
+    const current = chartData[chartData.length - 1]?.close || 0;
+    const prev = chartData[chartData.length - 2]?.close || 0;
+    const change = prev !== 0 ? ((current - prev) / prev) * 100 : 0;
+    
+    return {
+      currentPrice: current,
+      priceChange: change,
+      isUp: change >= 0
+    };
+  }, [chartData]);
+
+  // 組合名稱與編號用於顯示
+  const selectedAsset = selectedAssetName 
+    ? `${selectedSymbol} ${selectedAssetName}` 
+    : `${selectedSymbol}`;
 
   return (
-    <StockContext.Provider value={{ selectedAsset, setSelectedAsset, marketType: currentMarketType, chartData, currentPrice, priceChange, isUp }}>
+    <StockContext.Provider value={{ 
+      selectedAsset, 
+      setSelectedAsset: (val) => setSelectedSymbol(val.split(' ')[0]),
+      selectedSymbol,
+      marketType: currentMarketType, 
+      chartData, 
+      currentPrice, 
+      priceChange, 
+      isUp,
+      loading 
+    }}>
       {children}
     </StockContext.Provider>
   );

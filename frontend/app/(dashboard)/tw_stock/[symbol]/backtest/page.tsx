@@ -34,7 +34,7 @@ export default function BacktestPage() {
         <Card className="h-[400px] flex flex-col relative overflow-hidden">
           <div className="flex justify-between items-center mb-4">
             <h2 className="text-lg font-medium flex items-center gap-2 text-slate-800">
-              <CandlestickChart size={18} className="text-indigo-600" />
+              <CandlestickChart size={18} className="text-sky-600" />
               價格走勢與技術指標
             </h2>
             <div className="flex gap-3 text-xs font-medium text-slate-500">
@@ -51,7 +51,7 @@ export default function BacktestPage() {
       <div className="space-y-6">
         <Card>
           <h2 className="text-lg font-medium mb-5 flex items-center gap-2 border-b border-slate-100 pb-3 text-slate-800">
-            <Settings size={18} className="text-indigo-600" />
+            <Settings size={18} className="text-sky-600" />
             策略回測參數
           </h2>
           <div className="space-y-4">
@@ -74,7 +74,7 @@ export default function BacktestPage() {
               size="large"
               block
               icon={<Play size={18} fill="currentColor" />}
-              className="h-12 bg-gradient-to-r from-indigo-600 to-purple-600 border-none shadow-md shadow-indigo-100 flex items-center justify-center gap-2"
+              className="h-12 bg-gradient-to-r from-sky-600 to-purple-600 border-none shadow-md shadow-sky-100 flex items-center justify-center gap-2"
             >
               開始執行回測
             </Button>
@@ -83,8 +83,8 @@ export default function BacktestPage() {
 
         <div className={`transition-all duration-500 ${results ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'}`}>
           {results && (
-            <Card className="border-indigo-100 bg-indigo-50/50">
-              <h2 className="text-sm font-medium text-indigo-600 mb-4 flex items-center gap-2">
+            <Card className="border-sky-100 bg-sky-50/50">
+              <h2 className="text-sm font-medium text-sky-600 mb-4 flex items-center gap-2">
                 <TrendingUp size={16} />
                 回測績效報告
               </h2>

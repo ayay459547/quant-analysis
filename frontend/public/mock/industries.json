@@ -1,0 +1,10 @@
+[
+  { "id": "semiconductor", "name": "半導體", "count": 120, "icon": "Cpu", "monthlyChange": 8.5 },
+  { "id": "shipping", "name": "航運", "count": 45, "icon": "Ship", "monthlyChange": 12.2 },
+  { "id": "electronics", "name": "電子通路", "count": 85, "icon": "CircuitBoard", "monthlyChange": -2.4 },
+  { "id": "finance", "name": "金融保險", "count": 35, "icon": "Landmark", "monthlyChange": 3.1 },
+  { "id": "plastics", "name": "塑膠工業", "count": 28, "icon": "Container", "monthlyChange": -1.8 },
+  { "id": "steel", "name": "鋼鐵工業", "count": 32, "icon": "Hammer", "monthlyChange": 0.5 },
+  { "id": "biotech", "name": "生技醫療", "count": 65, "icon": "HeartPulse", "monthlyChange": 5.7 },
+  { "id": "food", "name": "食品工業", "count": 24, "icon": "Utensils", "monthlyChange": 1.2 }
+]
