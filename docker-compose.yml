@@ -1,0 +1,98 @@
+services:
+  # Infrastructure
+  db:
+    image: postgres:15-alpine
+    container_name: quant-db
+    restart: always
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: quant_analysis
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./database/migrations:/docker-entrypoint-initdb.d
+
+  redis:
+    image: redis:7-alpine
+    container_name: quant-redis
+    restart: always
+    ports:
+      - "6379:6379"
+
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: quant-rabbitmq
+    restart: always
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: user
+      RABBITMQ_DEFAULT_PASS: password
+
+  # Application Services
+  backend-go:
+    build:
+      context: ./backend-golang
+      dockerfile: Dockerfile
+    container_name: quant-backend-go
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+      - redis
+      - rabbitmq
+    environment:
+      - DB_URL=postgres://user:password@db:5432/quant_analysis?sslmode=disable
+      - REDIS_URL=redis:6379
+      - RABBITMQ_URL=amqp://user:password@rabbitmq:5672/
+
+  backend-python:
+    build:
+      context: ./backend-python
+      dockerfile: Dockerfile
+    container_name: quant-backend-python
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+      - redis
+      - rabbitmq
+    environment:
+      - DATABASE_URL=postgresql://user:password@db:5432/quant_analysis
+      - REDIS_URL=redis://redis:6379/0
+      - RABBITMQ_URL=amqp://user:password@rabbitmq:5672/
+
+  backend-nodejs:
+    build:
+      context: ./backend-nodejs
+      dockerfile: Dockerfile
+    container_name: quant-backend-nodejs
+    ports:
+      - "3001:3001"
+    depends_on:
+      - db
+      - redis
+      - rabbitmq
+    environment:
+      - PORT=3001
+      - DATABASE_URL=postgresql://user:password@db:5432/quant_analysis
+      - REDIS_URL=redis://redis:6379
+      - RABBITMQ_URL=amqp://user:password@rabbitmq:5672/
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: quant-frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend-go
+      - backend-python
+      - backend-nodejs
+
+volumes:
+  postgres_data:

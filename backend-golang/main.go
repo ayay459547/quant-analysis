@@ -1,42 +1,48 @@
 package main
 
 import (
-	// "fmt"
-	// "github.com/ayay459547/quant-backend/internal/config"
-	"encoding/json"
+	"github.com/ayay459547/quant-backend/database"
+	delivery "github.com/ayay459547/quant-backend/internal/delivery/http"
+	"github.com/ayay459547/quant-backend/internal/repository"
+	"github.com/ayay459547/quant-backend/internal/usecase"
+	"github.com/gin-gonic/gin"
+	"github.com/joho/godotenv"
 	"log"
 	"net/http"
+	"os"
 )
 
-type Response struct {
-	Data   string `json:"data"`
-	Status string `json:"status"`
-}
-
-func handler(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json")
-
-	resp := Response{
-		Data:   "Hello, World! (GoLang)",
-		Status: "success",
-	}
-
-	err := json.NewEncoder(w).Encode(resp)
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-	}
-}
-
 func main() {
-	// config.LoadConfig()
-	http.HandleFunc("/hello", handler)
+	// Load .env file if it exists
+	_ = godotenv.Load()
 
-	// fmt.Println(config.AppConfig.Port)
+	// Connect to Database
+	connect.Connect()
 
-	// dbURL := config.GetDatabaseURL()
+	r := gin.Default()
 
-	// fmt.Println(dbURL)
-	port := "8080"
+	// Basic Hello Endpoint
+	r.GET("/hello", func(c *gin.Context) {
+		c.JSON(http.StatusOK, gin.H{"message": "Hello from Go"})
+	})
+
+	// Initialize Repositories
+	industryRepo := repository.NewPostgresIndustryRepository(connect.DB)
+	stockRepo := repository.NewPostgresStockRepository(connect.DB)
+
+	// Initialize Usecases
+	industryUsecase := usecase.NewIndustryUsecase(industryRepo)
+	stockUsecase := usecase.NewStockUsecase(stockRepo)
+
+	// Initialize Handlers
+	delivery.NewIndustryHandler(r, industryUsecase)
+	delivery.NewStockHandler(r, stockUsecase)
+
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+	}
+
 	log.Printf("Server is running on port %s", port)
-	log.Fatal(http.ListenAndServe(":"+port, nil))
+	log.Fatal(r.Run(":" + port))
 }
