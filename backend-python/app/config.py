@@ -14,6 +14,6 @@ class Config:
     DB_NAME = os.getenv("DB_NAME", "quant_db")
     
     # 組合出 SQLAlchemy 需要的連線字串
-    DATABASE_URL = f"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
+    DATABASE_URL = os.getenv("DATABASE_URL", f"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}")
 
 config = Config()

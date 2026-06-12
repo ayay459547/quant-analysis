@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node --loader ts-node/esm index.ts",
-    "dev": "nodemon --loader ts-node/esm index.ts",
+    "dev": "NODE_OPTIONS='--loader ts-node/esm' nodemon index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
